@@ -1,0 +1,47 @@
+{
+  "name": "schedule-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./backend/index.js",
+  "scripts": {
+    "start": "node back/dist/index.js",
+    "start2": "node --inspect=5858 -r ts-node/register ./back/src/index.ts",
+    "dev": "nodemon",
+    "postinstall": "tsc && mv -i -v back dist/ && rm -v -rf src",
+    "build": "tsc"
+  },
+  "HEROKU_deploy": "https://devcenter.heroku.com/articles/deploying-nodejs",
+  "HEROKU_deploy_TS": "https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0",
+  "SEE_tsconfig": "https://medium.com/create-a-server-with-nodemon-express-typescript/create-a-server-with-nodemon-express-typescript-f7c88fb5ee71",
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules",
+      "frontned"
+    ],
+    "watch": [
+      "backend/src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.28",
+    "@types/express": "^4.17.11",
+    "@types/node": "^15.0.2",
+    "eslint": "^6.6.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.4",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
+  }
+}
