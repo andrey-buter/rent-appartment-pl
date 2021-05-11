@@ -31,6 +31,8 @@ export class ExternalRequest {
     async request() {
         return new Promise( ( resolve, reject ) => {
             // const options = this.getOptions();
+            console.log(this.url);
+
             const httpReq = https.request( this.url, ( httpResp ) => {
                 httpResp.setEncoding( 'utf8' );
                 httpResp.on( 'data', ( chunk ) => this.chunks.push( chunk ) );
