@@ -5,7 +5,7 @@ import { ExternalRequest } from "../utils/external-request"
 const router = Router();
 
 router.get( '/api/get-items/:path', async ( request, responce, next ) => {
-    const path = request.params.path
+    const path = decodeURIComponent(request.params.path)
         // remove all html tags
         // https://stackoverflow.com/questions/5002111/how-to-strip-html-tags-from-string-in-javascript
         .replace( /<\/?[^>]+(>|$)/g, "" )

@@ -1,39 +1,27 @@
 import URL from "url";
 import cheerio from "cheerio";
-import http from "http";
+import https from "https";
 import { CustomError } from "./error";
 
 export class ExternalRequest {
-    options;
-    chunks;
-    onResponceEnd;
-    url;
-
-    constructor( url, onResponceEnd ) {
-        this.options = {
-            // host: 'www.minsktrans.by',
-            host: '',
-            // path: '/mg/suburbt.php?find_runs=1&minsk=1&other=501227',
-            path: '',
-            port: 80,
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            }
+    options = {
+        // host: 'www.minsktrans.by',
+        host: '',
+        // path: '/mg/suburbt.php?find_runs=1&minsk=1&other=501227',
+        path: '',
+        port: 80,
+        method: 'GET',
+        protocol: 'https:',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
         }
-        this.chunks = [];
+    };
+    chunks = [];
 
-        this.onResponceEnd = onResponceEnd;
-        this.url = this._parseUrl( url );
+    constructor( private url: string, private onResponseEnd ) {}
 
-        this.setOptions( {
-            path: this.url.path,
-            host: this.url.host
-        } );
-
-    }
     setOptions(newOptions) {
-        this.options = Object.assign(this.options, newOptions);
+        return Object.assign(this.options, newOptions);
     }
     _parseUrl(url) {
         // see https://stackoverflow.com/questions/13506460/how-to-extract-the-host-from-a-url-in-javascript
@@ -42,12 +30,13 @@ export class ExternalRequest {
 
     async request() {
         return new Promise( ( resolve, reject ) => {
-            const httpReq = http.request( this.options, ( httpResp ) => {
+            // const options = this.getOptions();
+            const httpReq = https.request( this.url, ( httpResp ) => {
                 httpResp.setEncoding( 'utf8' );
                 httpResp.on( 'data', ( chunk ) => this.chunks.push( chunk ) );
                 httpResp.on( 'end', () => {
                     const $ = cheerio.load( this.chunks.join( '' ) );
-                    const data = this.onResponceEnd( $, this.url );
+                    const data = this.onResponseEnd( $, this.url );
 
                     data instanceof Error ? reject( data ) : resolve( data );
                 } );
@@ -56,6 +45,15 @@ export class ExternalRequest {
             httpReq.on( 'error', ( err ) => {
                 reject( new CustomError( err, `Host ${err['host']} is not available` ) );
             } )
+        } );
+    }
+
+    private getOptions() {
+        const url = this._parseUrl( this.url );
+
+        return this.setOptions( {
+            path: url.path,
+            host: url.host
         } );
     }
 }
