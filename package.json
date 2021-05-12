@@ -9,7 +9,7 @@
     "dev": "tsc && nodemon",
     "postinstall2": "tsc && mv -i -v back dist/ && rm -v -rf src",
     "heroku-postbuild": "npm run tsc",
-    "build": "tsc",
+    "build": "npm run tsc",
     "tsc": "tsc"
   },
   "HEROKU_deploy": "https://devcenter.heroku.com/articles/deploying-nodejs",
