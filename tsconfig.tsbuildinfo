@@ -597,12 +597,12 @@
         "affectsGlobalScope": false
       },
       "./back/src/utils/external-request.ts": {
-        "version": "82ff35b218ee88856ca41fc491900808a4940ffeb618a3f59d84dcccabefd7c6",
+        "version": "64d5cfe43c9e45addb113d08b82fd635fbce2cdaed9b9a537343cb7cd07e4c86",
         "signature": "77795987016dbe4b8d357d9b3fbd67c5651eaf45a4f959899c112e424a00c090",
         "affectsGlobalScope": false
       },
       "./back/src/routes/get-items.route.ts": {
-        "version": "6d3c2b62e1eadc43d96f4a838b3f816963a6c8eae17773c6dd183c6743648cb8",
+        "version": "6e87cfa903c7a46d5067498d70262ac95c3635b83c152918c7365f5d690b7d02",
         "signature": "c106970ee4b686b5ebf0964ea4e0d1b2af02bdecd2d5cfeecedeb7bb5b2f404b",
         "affectsGlobalScope": false
       },

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node back/dist/index.js",
     "start2": "node --inspect=5858 -r ts-node/register ./back/src/index.ts",
-    "dev": "nodemon",
+    "dev": "tsc && nodemon",
     "postinstall2": "tsc && mv -i -v back dist/ && rm -v -rf src",
     "postinstall": "tsc",
     "build": "tsc"
