@@ -8,8 +8,9 @@
     "start2": "node --inspect=5858 -r ts-node/register ./back/src/index.ts",
     "dev": "tsc && nodemon",
     "postinstall2": "tsc && mv -i -v back dist/ && rm -v -rf src",
-    "heroku-postbuild": "tsc",
-    "build": "tsc"
+    "heroku-postbuild": "npm run tsc",
+    "build": "tsc",
+    "tsc": "tsc"
   },
   "HEROKU_deploy": "https://devcenter.heroku.com/articles/deploying-nodejs",
   "HEROKU_deploy_TS": "https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0",
