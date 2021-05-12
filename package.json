@@ -10,7 +10,9 @@
     "postinstall2": "tsc && mv -i -v back dist/ && rm -v -rf src",
     "heroku-postbuild": "npm run build-ts",
     "build": "npm run tsc",
-    "build-ts": "tsc"
+    "build-ts": "tsc",
+    "prepare": "husky install",
+    "husky": "husky"
   },
   "HEROKU_deploy": "https://devcenter.heroku.com/articles/deploying-nodejs",
   "HEROKU_deploy_TS": "https://medium.com/developer-rants/deploying-typescript-node-js-applications-to-heroku-81dd75424ce0",
@@ -42,6 +44,7 @@
     "@types/node": "^15.0.2",
     "eslint": "^6.6.0",
     "eslint-plugin-import": "^2.18.2",
+    "husky": "^6.0.0",
     "nodemon": "^1.19.4",
     "ts-node": "^8.10.2",
     "typescript": "^4.2.4"
